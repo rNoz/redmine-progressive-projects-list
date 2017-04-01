@@ -1,0 +1,19 @@
+<%
+session[:recent_issues] ||= []
+if @issue
+  session[:recent_issues].delete(@issue.id)
+  session[:recent_issues].unshift(@issue.id).slice!(5)
+end
+
+if session[:recent_issues].any? && progressive_setting?(:show_recent_issues) %>
+<div class="progressive-recently-viewed-issues">
+<h3><%= l(:label_recent_issues) %></h3>
+<ul>
+	<% session[:recent_issues].each do |recent_issue_id| %>
+	<% recent_issue = Issue.where(:id => recent_issue_id).first  %>
+	<% next unless recent_issue %>
+	<li><%= link_to_issue recent_issue, {:jump => current_menu_item} %></li>
+	<% end %>
+</ul>
+</div>
+<% end %>

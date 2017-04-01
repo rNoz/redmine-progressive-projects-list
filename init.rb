@@ -17,6 +17,7 @@ Redmine::Plugin.register :progressive_projects_list do
     'show_project_menu'         => false,
     'show_only_for_my_projects' => false,
     'show_recent_projects'      => true,
+    'show_recent_issues'      => true,
     'show_project_progress_overview' => ''
   }, :partial => 'settings/progressive_projects_list'
 end
@@ -26,3 +27,4 @@ require 'progressive/application_helper_patch'
 require 'progressive/projects_helper_patch'
 require 'progressive/projects_list_view_listener'
 require 'progressive/recent_projects_view_listener'
+require 'progressive/recent_issues_view_listener'
